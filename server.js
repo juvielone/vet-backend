@@ -4,6 +4,7 @@ const colors = require('colors');
 const dotenv = require('dotenv').config();
 const { errorHandler } = require('./middleware/errorMid');
 const connectDB = require('./config/db');
+const cors = require("cors");
 const app = express();
 
 const port = process.env.PORT || 5000
@@ -15,7 +16,7 @@ connectDB();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
 
-
+app.use(cors());
 
 // Landing page for vet API
 app.use('/', express.static(path.join(__dirname, 'public')))
